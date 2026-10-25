@@ -1,0 +1,1504 @@
+<title>Jorge Gómez Quintanilla</title>
+<meta name="claude:viewport-fit-sides" content="cover" />
+<link
+  rel="stylesheet"
+  href="https://fonts.googleapis.com/css2?family=Bricolage+Grotesque:opsz,wght@12..96,600;12..96,800&family=IBM+Plex+Mono:wght@500&family=Public+Sans:wght@400;600&display=swap"
+/>
+<style>
+  /* Layout: relato en una sola columna con barra de progreso fija.
+   Héroe azul petróleo (confianza) -> selector de necesidades -> trayectoria -> formación -> habilidades -> contacto.
+   Color: azul petróleo = confianza y competencia; ámbar = acción (solo botones); verde menta = disponibilidad y crecimiento. */
+  :root {
+    --bg: #f2f7f8;
+    --surface: #ffffff;
+    --ink: #10262e;
+    --muted: #4a646d;
+    --line: #d0e0e4;
+    --teal: #0b5f7a;
+    --deep: #083f52;
+    --amber: #f5a524;
+    --amber-ink: #1b1300;
+    --mint: #0f9a77;
+    --soft: #e3f0f3;
+    --on-deep: #ffffff;
+    --on-deep-muted: #b9d6df;
+    --f-display: "Bricolage Grotesque", "Trebuchet MS", system-ui, sans-serif;
+    --f-body: "Public Sans", system-ui, -apple-system, "Segoe UI", sans-serif;
+    --f-mono: "IBM Plex Mono", ui-monospace, Consolas, monospace;
+  }
+  @media (prefers-color-scheme: dark) {
+    :root:not([data-theme="light"]) {
+      --bg: #09181f;
+      --surface: #0f2630;
+      --ink: #e5f1f4;
+      --muted: #9db6be;
+      --line: #1d3a46;
+      --teal: #52bad9;
+      --soft: #143341;
+      --mint: #3fd1a8;
+      color-scheme: dark;
+    }
+  }
+  :root[data-theme="dark"] {
+    --bg: #09181f;
+    --surface: #0f2630;
+    --ink: #e5f1f4;
+    --muted: #9db6be;
+    --line: #1d3a46;
+    --teal: #52bad9;
+    --soft: #143341;
+    --mint: #3fd1a8;
+    color-scheme: dark;
+  }
+
+  * {
+    box-sizing: border-box;
+  }
+  html {
+    scroll-behavior: auto;
+  }
+  body {
+    margin: 0;
+    background: var(--bg);
+    color: var(--ink);
+    font: 400 16px/1.6 var(--f-body);
+    -webkit-font-smoothing: antialiased;
+  }
+  body::before {
+    content: "";
+    position: fixed;
+    inset: 0 0 auto;
+    height: env(safe-area-inset-top, 0px);
+    z-index: 30;
+    background: var(--deep);
+  }
+  h1,
+  h2,
+  h3 {
+    font-family: var(--f-display);
+    line-height: 1.12;
+    margin: 0;
+    text-wrap: balance;
+  }
+  p {
+    margin: 0;
+  }
+  button {
+    font: inherit;
+    color: inherit;
+    cursor: pointer;
+  }
+  a {
+    color: inherit;
+  }
+  :focus-visible {
+    outline: 3px solid var(--amber);
+    outline-offset: 2px;
+  }
+  .wrap {
+    max-width: 1040px;
+    margin-inline: auto;
+    padding-left: max(16px, env(safe-area-inset-left, 0px));
+    padding-right: max(16px, env(safe-area-inset-right, 0px));
+  }
+  .kicker {
+    font: 500 0.78rem/1 var(--f-mono);
+    letter-spacing: 0.14em;
+    text-transform: uppercase;
+    color: var(--teal);
+    margin-bottom: 12px;
+  }
+  section {
+    scroll-margin-top: calc(64px + env(safe-area-inset-top, 0px));
+  }
+  .sec {
+    padding-block: 72px 8px;
+  }
+  .sec h2 {
+    font-size: clamp(1.7rem, 4.2vw, 2.5rem);
+    font-weight: 800;
+    max-width: 22ch;
+  }
+  .sec .lead {
+    color: var(--muted);
+    max-width: 60ch;
+    margin-top: 14px;
+  }
+
+  /* Encabezado fijo */
+  .top {
+    position: sticky;
+    top: env(safe-area-inset-top, 0px);
+    z-index: 40;
+    background: var(--deep);
+    color: var(--on-deep);
+  }
+  .top .wrap {
+    display: flex;
+    align-items: center;
+    gap: 16px;
+    height: 56px;
+  }
+  .mono-badge {
+    display: grid;
+    place-items: center;
+    width: 34px;
+    height: 34px;
+    border-radius: 50%;
+    background: var(--amber);
+    color: var(--amber-ink);
+    font: 800 0.85rem var(--f-display);
+    flex: none;
+  }
+  .top .nm {
+    font: 600 0.95rem var(--f-display);
+    white-space: nowrap;
+    overflow: hidden;
+    text-overflow: ellipsis;
+    min-width: 0;
+  }
+  .top nav {
+    display: none;
+    gap: 4px;
+    margin-left: auto;
+  }
+  .top nav a {
+    font-size: 0.85rem;
+    text-decoration: none;
+    padding: 6px 10px;
+    border-radius: 6px;
+    color: var(--on-deep-muted);
+  }
+  .top nav a:hover {
+    color: #fff;
+    background: rgba(255, 255, 255, 0.1);
+  }
+  .pct {
+    margin-left: auto;
+    font: 500 0.75rem var(--f-mono);
+    color: var(--on-deep-muted);
+    white-space: nowrap;
+  }
+  .top nav + .pct {
+    margin-left: 12px;
+  }
+  .bar {
+    position: absolute;
+    left: 0;
+    right: 0;
+    bottom: 0;
+    height: 3px;
+    background: rgba(255, 255, 255, 0.14);
+  }
+  .bar i {
+    display: block;
+    height: 100%;
+    background: var(--amber);
+    transform-origin: left;
+    transform: scaleX(0);
+  }
+  @media (min-width: 820px) {
+    .top nav {
+      display: flex;
+    }
+  }
+
+  /* Héroe */
+  .hero {
+    background:
+      radial-gradient(
+        900px 380px at 85% -10%,
+        rgba(245, 165, 36, 0.22),
+        transparent 60%
+      ),
+      linear-gradient(160deg, var(--deep), var(--teal) 140%);
+    color: var(--on-deep);
+    padding-block: 56px 48px;
+    position: relative;
+    overflow: hidden;
+  }
+  .hero::after {
+    content: "";
+    position: absolute;
+    inset: 0;
+    background-image: radial-gradient(
+      rgba(255, 255, 255, 0.09) 1px,
+      transparent 1.5px
+    );
+    background-size: 22px 22px;
+    mask-image: linear-gradient(to bottom, #000, transparent 85%);
+    pointer-events: none;
+  }
+  .hero .wrap {
+    position: relative;
+    z-index: 1;
+  }
+  .avail {
+    display: inline-flex;
+    align-items: center;
+    gap: 8px;
+    padding: 6px 12px;
+    border-radius: 99px;
+    background: rgba(63, 209, 168, 0.14);
+    border: 1px solid rgba(63, 209, 168, 0.5);
+    color: #bff3e3;
+    font-size: 0.85rem;
+  }
+  .dot {
+    width: 9px;
+    height: 9px;
+    border-radius: 50%;
+    background: #3fd1a8;
+    box-shadow: 0 0 0 0 rgba(63, 209, 168, 0.7);
+    animation: pulse 2s infinite;
+  }
+  @keyframes pulse {
+    70% {
+      box-shadow: 0 0 0 10px rgba(63, 209, 168, 0);
+    }
+    100% {
+      box-shadow: 0 0 0 0 rgba(63, 209, 168, 0);
+    }
+  }
+  .who {
+    display: flex;
+    flex-wrap: wrap;
+    align-items: center;
+    gap: 24px;
+    margin-top: 20px;
+  }
+  .wtxt {
+    flex: 1 1 280px;
+    min-width: 0;
+  }
+  .photo {
+    width: clamp(112px, 22vw, 172px);
+    aspect-ratio: 1;
+    border-radius: 50%;
+    object-fit: cover;
+    object-position: 50% 20%;
+    border: 4px solid var(--amber);
+    box-shadow: 0 12px 32px rgba(0, 0, 0, 0.35);
+    flex: none;
+  }
+  .hero h1 {
+    font-size: clamp(2.2rem, 7vw, 4.4rem);
+    font-weight: 800;
+    letter-spacing: -0.02em;
+  }
+  .role-line {
+    font-size: clamp(1.05rem, 2.6vw, 1.45rem);
+    margin-top: 14px;
+    color: var(--on-deep-muted);
+  }
+  .role-line b {
+    color: #fff;
+    font-weight: 600;
+  }
+  #rot {
+    display: inline-block;
+    color: var(--amber);
+    font-weight: 600;
+    transition:
+      opacity 0.35s,
+      transform 0.35s;
+  }
+  #rot.out {
+    opacity: 0;
+    transform: translateY(6px);
+  }
+  .hero .sum {
+    max-width: 58ch;
+    margin-top: 18px;
+    color: var(--on-deep-muted);
+  }
+  .ctas {
+    display: flex;
+    flex-wrap: wrap;
+    gap: 12px;
+    margin-top: 26px;
+  }
+  .btn {
+    display: inline-flex;
+    align-items: center;
+    gap: 8px;
+    border: 0;
+    border-radius: 8px;
+    padding: 13px 22px;
+    font-weight: 600;
+    text-decoration: none;
+    transition:
+      transform 0.15s,
+      box-shadow 0.15s;
+  }
+  .btn.pri {
+    background: var(--amber);
+    color: var(--amber-ink);
+  }
+  .btn.pri:hover {
+    transform: translateY(-2px);
+    box-shadow: 0 8px 20px rgba(245, 165, 36, 0.35);
+  }
+  .btn.sec2 {
+    background: transparent;
+    color: #fff;
+    border: 1.5px solid rgba(255, 255, 255, 0.5);
+  }
+  .btn.sec2:hover {
+    background: rgba(255, 255, 255, 0.1);
+  }
+  .quick {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(220px, 1fr));
+    gap: 12px;
+    margin-top: 40px;
+  }
+  .quick button {
+    text-align: left;
+    background: rgba(255, 255, 255, 0.08);
+    border: 1px solid rgba(255, 255, 255, 0.2);
+    border-radius: 10px;
+    padding: 16px;
+    color: #fff;
+    transition:
+      background 0.2s,
+      transform 0.2s;
+  }
+  .quick button:hover {
+    background: rgba(255, 255, 255, 0.16);
+    transform: translateY(-3px);
+  }
+  .quick strong {
+    display: block;
+    font: 800 1.5rem var(--f-display);
+    color: var(--amber);
+  }
+  .quick span {
+    font-size: 0.9rem;
+    color: var(--on-deep-muted);
+  }
+  .stats {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(130px, 1fr));
+    gap: 12px 24px;
+    margin-top: 32px;
+    padding-top: 24px;
+    border-top: 1px solid rgba(255, 255, 255, 0.2);
+  }
+  .stats b {
+    display: block;
+    font: 800 2.2rem/1 var(--f-display);
+    font-variant-numeric: tabular-nums;
+  }
+  .stats span {
+    font-size: 0.85rem;
+    color: var(--on-deep-muted);
+  }
+
+  /* Necesidades */
+  .needs {
+    display: grid;
+    grid-template-columns: minmax(0, 1fr);
+    gap: 20px;
+    margin-top: 32px;
+  }
+  @media (min-width: 820px) {
+    .needs {
+      grid-template-columns: minmax(0, 5fr) minmax(0, 7fr);
+    }
+  }
+  .tabs {
+    display: flex;
+    flex-direction: column;
+    gap: 8px;
+  }
+  .tab {
+    text-align: left;
+    padding: 14px 16px;
+    border-radius: 10px;
+    border: 1.5px solid var(--line);
+    background: var(--surface);
+    font-weight: 600;
+    transition:
+      border-color 0.2s,
+      background 0.2s;
+  }
+  .tab:hover {
+    border-color: var(--teal);
+  }
+  .tab[aria-selected="true"] {
+    background: var(--teal);
+    border-color: var(--teal);
+    color: #fff;
+  }
+  :root[data-theme="dark"] .tab[aria-selected="true"] {
+    color: #04202a;
+  }
+  @media (prefers-color-scheme: dark) {
+    :root:not([data-theme="light"]) .tab[aria-selected="true"] {
+      color: #04202a;
+    }
+  }
+  .panel {
+    background: var(--surface);
+    border: 1px solid var(--line);
+    border-radius: 12px;
+    padding: 24px;
+    min-width: 0;
+  }
+  .panel h3 {
+    font-size: 1.35rem;
+    font-weight: 800;
+  }
+  .panel ul {
+    list-style: none;
+    padding: 0;
+    margin: 16px 0 20px;
+    display: grid;
+    gap: 10px;
+  }
+  .panel li {
+    position: relative;
+    padding-left: 26px;
+  }
+  .panel li::before {
+    content: "";
+    position: absolute;
+    left: 0;
+    top: 0.45em;
+    width: 14px;
+    height: 8px;
+    border-left: 3px solid var(--mint);
+    border-bottom: 3px solid var(--mint);
+    transform: rotate(-45deg) scale(0.85);
+  }
+  .link {
+    background: none;
+    border: 0;
+    padding: 0;
+    color: var(--teal);
+    font-weight: 600;
+    text-decoration: underline;
+    text-underline-offset: 4px;
+  }
+
+  /* Línea de tiempo */
+  .tl {
+    position: relative;
+    margin-top: 36px;
+    display: grid;
+    gap: 18px;
+  }
+  .tl::before {
+    content: "";
+    position: absolute;
+    left: 9px;
+    top: 6px;
+    bottom: 6px;
+    width: 2px;
+    background: var(--line);
+  }
+  .role {
+    position: relative;
+    padding-left: 40px;
+    min-width: 0;
+  }
+  .role::before {
+    content: "";
+    position: absolute;
+    left: 2px;
+    top: 22px;
+    width: 16px;
+    height: 16px;
+    border-radius: 50%;
+    background: var(--bg);
+    border: 4px solid var(--teal);
+    transition: background 0.3s;
+  }
+  .role.now::before {
+    border-color: var(--mint);
+    background: var(--mint);
+  }
+  .role.hl .card {
+    border-color: var(--amber);
+    box-shadow: 0 0 0 4px rgba(245, 165, 36, 0.25);
+  }
+  .card {
+    background: var(--surface);
+    border: 1px solid var(--line);
+    border-radius: 12px;
+    padding: 20px;
+    transition:
+      border-color 0.3s,
+      box-shadow 0.3s;
+  }
+  .meta {
+    display: flex;
+    flex-wrap: wrap;
+    gap: 6px 14px;
+    align-items: center;
+    font: 500 0.78rem var(--f-mono);
+    color: var(--muted);
+  }
+  .chip {
+    display: inline-block;
+    padding: 3px 10px;
+    border-radius: 99px;
+    background: var(--soft);
+    color: var(--teal);
+    font: 600 0.75rem var(--f-body);
+  }
+  .chip.live {
+    background: rgba(15, 154, 119, 0.14);
+    color: var(--mint);
+  }
+  .card h3 {
+    font-size: 1.25rem;
+    font-weight: 800;
+    margin-top: 8px;
+  }
+  .card .co {
+    color: var(--teal);
+    font-weight: 600;
+    margin-top: 2px;
+  }
+  .card ul {
+    margin: 14px 0 0;
+    padding-left: 20px;
+    display: grid;
+    gap: 8px;
+  }
+  .card li::marker {
+    color: var(--teal);
+  }
+  .more {
+    margin-top: 12px;
+  }
+
+  /* Formación */
+  .edu {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(260px, 1fr));
+    gap: 14px;
+    margin-top: 32px;
+  }
+  .edu .card {
+    border-top: 4px solid var(--teal);
+  }
+  .edu .card p {
+    color: var(--muted);
+    margin-top: 4px;
+  }
+  .filters {
+    display: flex;
+    flex-wrap: wrap;
+    gap: 8px;
+    margin: 32px 0 16px;
+  }
+  .f {
+    padding: 8px 16px;
+    border-radius: 99px;
+    border: 1.5px solid var(--line);
+    background: var(--surface);
+    font-weight: 600;
+    font-size: 0.9rem;
+  }
+  .f[aria-pressed="true"] {
+    background: var(--teal);
+    border-color: var(--teal);
+    color: #fff;
+  }
+  :root[data-theme="dark"] .f[aria-pressed="true"] {
+    color: #04202a;
+  }
+  @media (prefers-color-scheme: dark) {
+    :root:not([data-theme="light"]) .f[aria-pressed="true"] {
+      color: #04202a;
+    }
+  }
+  .certs {
+    display: grid;
+    grid-template-columns: repeat(auto-fill, minmax(240px, 1fr));
+    gap: 12px;
+  }
+  .cert {
+    background: var(--surface);
+    border: 1px solid var(--line);
+    border-radius: 10px;
+    padding: 16px;
+    display: grid;
+    gap: 6px;
+    transition:
+      transform 0.2s,
+      border-color 0.2s;
+  }
+  .cert:hover {
+    transform: translateY(-3px);
+    border-color: var(--teal);
+  }
+  .cert b {
+    font-weight: 600;
+  }
+  .cert small {
+    font: 500 0.75rem var(--f-mono);
+    color: var(--muted);
+  }
+  .cert[hidden] {
+    display: none;
+  }
+
+  /* Habilidades */
+  .skillgrid {
+    display: grid;
+    grid-template-columns: minmax(0, 1fr);
+    gap: 20px;
+    margin-top: 32px;
+  }
+  @media (min-width: 820px) {
+    .skillgrid {
+      grid-template-columns: minmax(0, 1fr) minmax(0, 1fr);
+    }
+  }
+  .pills {
+    display: flex;
+    flex-wrap: wrap;
+    gap: 8px;
+  }
+  .pill {
+    padding: 9px 16px;
+    border-radius: 8px;
+    border: 1.5px solid var(--line);
+    background: var(--surface);
+    font-weight: 600;
+    font-size: 0.92rem;
+  }
+  button.pill:hover {
+    border-color: var(--teal);
+  }
+  button.pill[aria-pressed="true"] {
+    background: var(--teal);
+    color: #fff;
+    border-color: var(--teal);
+  }
+  :root[data-theme="dark"] button.pill[aria-pressed="true"] {
+    color: #04202a;
+  }
+  @media (prefers-color-scheme: dark) {
+    :root:not([data-theme="light"]) button.pill[aria-pressed="true"] {
+      color: #04202a;
+    }
+  }
+  .soft .pill {
+    font-weight: 400;
+    background: var(--soft);
+    border-color: transparent;
+  }
+  .skillgrid h3 {
+    font-size: 1.1rem;
+    margin-bottom: 12px;
+  }
+  .info {
+    margin-top: 14px;
+    background: var(--surface);
+    border: 1px solid var(--line);
+    border-left: 4px solid var(--amber);
+    border-radius: 8px;
+    padding: 14px 16px;
+    min-height: 96px;
+  }
+  .info b {
+    display: block;
+    margin-bottom: 6px;
+  }
+  .info ul {
+    margin: 0;
+    padding-left: 18px;
+    display: grid;
+    gap: 4px;
+    color: var(--muted);
+  }
+  .langs {
+    display: flex;
+    flex-wrap: wrap;
+    gap: 12px;
+    margin-top: 20px;
+  }
+  .lang {
+    background: var(--surface);
+    border: 1px solid var(--line);
+    border-radius: 10px;
+    padding: 12px 18px;
+  }
+  .lang b {
+    display: block;
+  }
+  .lang span {
+    font: 500 0.78rem var(--f-mono);
+    color: var(--teal);
+  }
+
+  /* Contacto */
+  .end {
+    margin-top: 80px;
+    background: linear-gradient(160deg, var(--deep), var(--teal) 150%);
+    color: var(--on-deep);
+    padding-block: 64px;
+  }
+  .end h2 {
+    font-size: clamp(1.9rem, 5vw, 3rem);
+    font-weight: 800;
+    max-width: 20ch;
+  }
+  .end p {
+    color: var(--on-deep-muted);
+    max-width: 56ch;
+    margin-top: 14px;
+  }
+  .contact {
+    display: grid;
+    gap: 10px;
+    margin-top: 28px;
+    max-width: 520px;
+  }
+  .crow {
+    display: flex;
+    gap: 10px;
+    align-items: center;
+    background: rgba(255, 255, 255, 0.1);
+    border: 1px solid rgba(255, 255, 255, 0.25);
+    border-radius: 10px;
+    padding: 10px 14px;
+  }
+  .crow span {
+    flex: 1;
+    min-width: 0;
+    overflow-wrap: anywhere;
+    user-select: all;
+  }
+  .crow small {
+    display: block;
+    font: 500 0.7rem var(--f-mono);
+    letter-spacing: 0.1em;
+    text-transform: uppercase;
+    color: var(--on-deep-muted);
+  }
+  .crow a {
+    color: #fff;
+    font-weight: 600;
+    overflow-wrap: anywhere;
+  }
+  .crow div {
+    flex: 1;
+    min-width: 0;
+  }
+  .crow button {
+    background: var(--amber);
+    color: var(--amber-ink);
+    border: 0;
+    border-radius: 6px;
+    padding: 7px 12px;
+    font-weight: 600;
+    font-size: 0.85rem;
+  }
+  .note {
+    font-size: 0.9rem;
+    color: var(--on-deep-muted);
+    border: 1px dashed rgba(255, 255, 255, 0.4);
+    border-radius: 10px;
+    padding: 12px 14px;
+  }
+  .foot {
+    padding: 20px 0 90px;
+    font-size: 0.8rem;
+    color: var(--muted);
+  }
+  .fab {
+    position: fixed;
+    right: max(16px, env(safe-area-inset-right, 0px));
+    bottom: calc(16px + env(safe-area-inset-bottom, 0px));
+    z-index: 35;
+    box-shadow: 0 8px 24px rgba(0, 0, 0, 0.3);
+    transition:
+      transform 0.3s,
+      opacity 0.3s;
+  }
+  .fab.off {
+    transform: translateY(90px);
+    opacity: 0;
+    pointer-events: none;
+  }
+  .toast {
+    position: fixed;
+    left: 50%;
+    bottom: calc(24px + env(safe-area-inset-bottom, 0px));
+    transform: translate(-50%, 120px);
+    background: var(--deep);
+    color: #fff;
+    padding: 12px 20px;
+    border-radius: 10px;
+    z-index: 50;
+    transition: transform 0.35s;
+    max-width: calc(100vw - 32px);
+    text-align: center;
+  }
+  .toast.on {
+    transform: translate(-50%, 0);
+  }
+
+  /* Aparición suave: el contenido siempre es legible, solo se desliza */
+  .rv {
+    transform: translateY(16px);
+    transition: transform 0.6s cubic-bezier(0.2, 0.7, 0.2, 1);
+  }
+  .rv.seen {
+    transform: none;
+  }
+  @media (prefers-reduced-motion: reduce) {
+    * {
+      animation: none !important;
+      transition: none !important;
+    }
+    .rv {
+      transform: none;
+    }
+  }
+</style>
+
+<header class="top">
+  <div class="wrap">
+    <span class="mono-badge" aria-hidden="true">JG</span>
+    <span class="nm">Jorge Gómez Quintanilla</span>
+    <nav aria-label="Secciones">
+      <a href="#aporte" data-go="aporte">Qué aporto</a>
+      <a href="#trayectoria" data-go="trayectoria">Trayectoria</a>
+      <a href="#formacion" data-go="formacion">Formación</a>
+      <a href="#habilidades" data-go="habilidades">Habilidades</a>
+    </nav>
+    <span class="pct" id="pct" aria-live="polite">Perfil visto 0%</span>
+  </div>
+  <div class="bar"><i id="barfill"></i></div>
+</header>
+
+<main>
+  <section class="hero" id="inicio">
+    <div class="wrap">
+      <span class="avail"
+        ><i class="dot"></i>Disponible para nuevas oportunidades</span
+      >
+      <div class="who">
+        <img
+          class="photo"
+          src="foto.jpg"
+          alt="Retrato de Jorge Gómez Quintanilla"
+          width="172"
+          height="172"
+        />
+        <div class="wtxt">
+          <h1>Jorge Gómez Quintanilla</h1>
+          <p class="role-line">
+            <b>Ingeniero Industrial y de Sistemas</b> con experiencia en
+            <span id="rot">gestión de procesos</span>
+          </p>
+        </div>
+      </div>
+      <p class="sum">
+        Profesional dedicado, analítico y de rápido aprendizaje. Combina
+        habilidades técnicas y blandas para apoyar a las empresas a lograr sus
+        objetivos y metas.
+      </p>
+      <div class="ctas">
+        <button class="btn pri" data-go="trayectoria">
+          Ver mi trayectoria
+        </button>
+        <button class="btn sec2" data-go="contacto">Contactar</button>
+      </div>
+      <div class="quick" aria-label="El perfil en 60 segundos">
+        <button data-go="aporte">
+          <strong>ISO 9001</strong
+          ><span
+            >Documentó y estandarizó procesos para un Sistema de Gestión de
+            Calidad</span
+          >
+        </button>
+        <button data-go="trayectoria">
+          <strong>KPIs en 5 áreas</strong
+          ><span>Producción, calidad, compras, proveedores y logística </span>
+        </button>
+        <button data-go="formacion">
+          <strong>Maestría en curso</strong
+          ><span>Administración de Proyectos, SUMMA University</span>
+        </button>
+      </div>
+      <div class="stats">
+        <div>
+          <b class="num" data-to="9" data-suf="+">9+</b
+          ><span>años de experiencia</span>
+        </div>
+        <div><b class="num" data-to="5">5</b><span>empresas</span></div>
+        <div>
+          <b class="num" data-to="8">8</b
+          ><span>diplomados y certificaciones</span>
+        </div>
+        <div><b class="num" data-to="2">2</b><span>idiomas</span></div>
+      </div>
+    </div>
+  </section>
+
+  <section class="sec" id="aporte">
+    <div class="wrap">
+      <p class="kicker">Para tu empresa</p>
+      <h2 class="rv">¿Qué necesita resolver tu equipo?</h2>
+      <p class="lead rv">
+        Elige un reto y mira qué ha hecho Jorge en ese terreno.
+      </p>
+      <div class="needs rv">
+        <div
+          class="tabs"
+          role="tablist"
+          aria-label="Retos de la empresa"
+          id="tabs"
+        ></div>
+        <div class="panel" id="need" role="tabpanel" aria-live="polite"></div>
+      </div>
+    </div>
+  </section>
+
+  <section class="sec" id="trayectoria">
+    <div class="wrap">
+      <p class="kicker">Trayectoria</p>
+      <h2 class="rv">Cinco empresas, un mismo hilo: procesos que se miden</h2>
+      <p class="lead rv">
+        De compras y proveedores a calidad, soporte, implementación de proyectos
+        y gestión de procesos.
+      </p>
+      <div class="tl" id="tl"></div>
+    </div>
+  </section>
+
+  <section class="sec" id="formacion">
+    <div class="wrap">
+      <p class="kicker">Formación</p>
+      <h2 class="rv">Estudios que respaldan la práctica</h2>
+      <div class="edu rv">
+        <div class="card">
+          <span class="chip">Licenciatura</span>
+          <h3>Ingeniero Industrial y de Sistemas</h3>
+          <p>Universidad TecMilenio · Monterrey, N.L.</p>
+        </div>
+        <div class="card">
+          <span class="chip live">En curso</span>
+          <h3>Maestría en Administración de Proyectos</h3>
+          <p>SUMMA University</p>
+        </div>
+      </div>
+      <h3 style="margin-top: 44px; font-size: 1.25rem" class="rv">
+        Diplomados y certificaciones
+      </h3>
+      <div
+        class="filters"
+        id="filters"
+        role="group"
+        aria-label="Filtrar por tema"
+      ></div>
+      <div class="certs" id="certs"></div>
+    </div>
+  </section>
+
+  <section class="sec" id="habilidades">
+    <div class="wrap">
+      <p class="kicker">Habilidades</p>
+      <h2 class="rv">Toca una habilidad y mira dónde la ha aplicado</h2>
+      <div class="skillgrid rv">
+        <div>
+          <h3>Técnicas</h3>
+          <div class="pills" id="tech"></div>
+          <div class="info" id="skillinfo" aria-live="polite"></div>
+        </div>
+        <div class="soft">
+          <h3>Blandas</h3>
+          <div class="pills" id="soft"></div>
+          <h3 style="margin-top: 28px">Idiomas</h3>
+          <div class="langs">
+            <div class="lang"><b>Español</b><span>Nativo</span></div>
+            <div class="lang"><b>Inglés</b><span>Avanzado C1</span></div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <section class="end" id="contacto">
+    <div class="wrap">
+      <p class="kicker" style="color: var(--amber)">Contacto</p>
+      <h2>Llegaste al final del perfil. ¿Hablamos?</h2>
+      <p>
+        Si tu equipo busca ordenar procesos, implementar calidad o dar
+        seguimiento con indicadores, Jorge está listo para conversar.
+      </p>
+      <div class="contact" id="contact"></div>
+      <div class="ctas">
+        <button class="btn pri" id="share">Copiar enlace de este perfil</button
+        ><button class="btn sec2" data-go="inicio">Volver arriba</button>
+      </div>
+    </div>
+  </section>
+  <div class="wrap foot">
+    Perfil armado a partir del currículum del candidato.
+  </div>
+</main>
+
+<button class="btn pri fab off" id="fab" data-go="contacto">Contactar</button>
+<div class="toast" id="toast" role="status"></div>
+
+<script>
+  /* Datos de contacto: se muestran solo si se llenan. Completar con permiso de la persona. */
+  const CONTACTO = {
+    direccion: "Av. Benito Juárez 123, Santiago, N.L. 67300",
+    telefono: "(81) 2200 2946",
+    correo: "dr_mexjorge@hotmail.com",
+    linkedin: "https://www.linkedin.com/in/jorgegomezq/",
+  };
+
+  const ROLES = [
+    {
+      id: "cofor",
+      rol: "Gerente de Procesos y Mejora Continua",
+      emp: "COFOR",
+      lugar: "Escobedo, Monterrey",
+      fecha: "01/2026 – 10/2026",
+      now: true,
+      b: [
+        "Desarrollo, documentación y estandarización de procesos operativos y administrativos para implementar un Sistema de Gestión de Calidad basado en ISO 9001.",
+        "Controles e inspecciones de calidad en recepción de materia prima, procesos productivos y producto terminado.",
+        "Diseño de indicadores KPI y herramientas de seguimiento para producción, calidad, compras, proveedores y logística.",
+        "Procedimientos, manuales de funciones, responsabilidades por puesto y formatos de control operativo.",
+        "Bases de datos, reportes gerenciales y herramientas para analizar productividad y desempeño.",
+        "Trabajo con distintos departamentos para encontrar mejoras, fortalecer la trazabilidad y estandarizar operaciones.",
+      ],
+    },
+    {
+      id: "express",
+      rol: "Implementación de proyecto",
+      emp: "Express Care",
+      lugar: "Revolución, Monterrey",
+      fecha: "05/2025 – 01/2026",
+      b: [
+        "Implementación de software en talleres mecánicos.",
+        "Entrada de proveedores y reportes de pagos de nómina.",
+        "Reportes de inventario.",
+        "Manejo de redes sociales y creación de contenido.",
+      ],
+    },
+    {
+      id: "culligan",
+      rol: "Ingeniero de Calidad",
+      emp: "Culligan",
+      lugar: "Ciénega de Flores",
+      fecha: "09/2023 – 09/2024",
+      b: [
+        "Seguimiento al cumplimiento de planes de calidad en procesos productivos y proyectos.",
+        "Implementación y monitoreo de indicadores KPI de aseguramiento y control de calidad.",
+        "Identificación de oportunidades de mejora y participación en acciones correctivas.",
+        "Herramientas de calidad y mejora continua para fortalecer los procesos operativos.",
+      ],
+    },
+    {
+      id: "hexaware",
+      rol: "Soporte Técnico",
+      emp: "Hexaware",
+      lugar: "Monterrey",
+      fecha: "10/2020 – 09/2023",
+      b: [
+        "Soporte a clientes ante cualquier problema del software.",
+        "Soporte técnico a procesos y consultas de usuarios del software.",
+      ],
+    },
+    {
+      id: "ttq",
+      rol: "Analista de Compras y Desarrollo de Proveedores",
+      emp: "TTQ (HVAC Industrial)",
+      lugar: "",
+      fecha: "07/2017 – 03/2021",
+      b: [
+        "Soporte al desarrollo de proveedores y al proceso de Compras.",
+        "Generación y seguimiento de RQs hasta su entrega o solución de cualquier problema en todas las etapas.",
+        "Administración de datos de proveedores y OCs en el sistema.",
+        "Informes de KPIs.",
+      ],
+    },
+  ];
+
+  const NEEDS = [
+    {
+      t: "Certificar o mejorar mi calidad",
+      h: "Calidad con base en ISO 9001",
+      p: [
+        "Documentación y estandarización de procesos para un Sistema de Gestión de Calidad ISO 9001.",
+        "Controles e inspecciones en materia prima, proceso y producto terminado.",
+        "Seguimiento a planes de calidad y acciones correctivas en planta.",
+      ],
+      r: ["cofor", "culligan"],
+    },
+    {
+      t: "Tener procesos claros y medibles",
+      h: "Procesos documentados con indicadores",
+      p: [
+        "Procedimientos, manuales de funciones y formatos de control operativo.",
+        "KPIs para producción, calidad, compras, proveedores y logística.",
+        "Reportes gerenciales y bases de datos para analizar desempeño.",
+      ],
+      r: ["cofor"],
+    },
+    {
+      t: "Implementar un sistema o proyecto",
+      h: "Proyectos que llegan a operar",
+      p: [
+        "Implementación de software en talleres mecánicos.",
+        "Maestría en Administración de Proyectos en curso y certificación en fundamentos de Scrum.",
+        "Capacitación en SAP, Power BI y manufactura esbelta.",
+      ],
+      r: ["express", "hexaware"],
+    },
+    {
+      t: "Ordenar compras y proveedores",
+      h: "Compras con seguimiento de principio a fin",
+      p: [
+        "Desarrollo de proveedores y soporte al proceso de Compras.",
+        "Seguimiento de RQs hasta su entrega o solución.",
+        "Administración de datos de proveedores y OCs, con informes de KPIs.",
+      ],
+      r: ["ttq", "cofor"],
+    },
+  ];
+
+  const CERTS = [
+    { n: "SAP Simplificado para principiantes", o: "Udemy", c: "Tecnología" },
+    {
+      n: "The Production Part Approval Process (PPAP)",
+      o: "Udemy",
+      c: "Calidad",
+    },
+    {
+      n: "Certificado Profesional de Fundamentos de Scrum",
+      o: "CertiProf",
+      c: "Proyectos",
+    },
+    {
+      n: "Manufactura Esbelta: Calidad y Manufactura",
+      o: "TecMilenio",
+      c: "Operaciones",
+    },
+    {
+      n: "Administración de Operación Esbelta: Manufactura",
+      o: "Udemy",
+      c: "Operaciones",
+    },
+    {
+      n: "Liderazgo de Resiliencia: Liderazgo Hoy",
+      o: "Udemy",
+      c: "Liderazgo",
+    },
+    {
+      n: "Certificación de Herramientas Básicas de Calidad Automotriz",
+      o: "",
+      c: "Calidad",
+    },
+    { n: "Certificación de Power BI", o: "", c: "Tecnología" },
+  ];
+
+  const TECH = {
+    "Control de calidad": [
+      "COFOR: controles e inspecciones, base ISO 9001",
+      "Culligan: planes de calidad y acciones correctivas",
+      "Certificación en Herramientas Básicas de Calidad Automotriz",
+    ],
+    "Indicadores, reportes y control": [
+      "COFOR: KPIs de producción, calidad, compras, proveedores y logística",
+      "Culligan: KPIs de aseguramiento y control de calidad",
+      "TTQ: informes de KPIs",
+    ],
+    "Base de datos y minería": [
+      "COFOR: bases de datos y reportes gerenciales",
+      "TTQ: datos de proveedores y OCs en el sistema",
+      "Certificación de Power BI",
+    ],
+    "Administración de proyecto": [
+      "Express Care: implementación de proyecto",
+      "Maestría en Administración de Proyectos (en curso)",
+    ],
+    "Metodología Scrum": [
+      "Certificado Profesional de Fundamentos de Scrum (CertiProf)",
+    ],
+    "Manufactura esbelta": [
+      "Manufactura Esbelta: Calidad y Manufactura (TecMilenio)",
+      "Administración de Operación Esbelta (Udemy)",
+    ],
+    "Microsoft Office": ["Nivel avanzado"],
+  };
+  const SOFT = [
+    "Trabajo en equipo",
+    "Solución de problemas",
+    "Adaptabilidad y actitud positiva",
+    "Administración del tiempo",
+    "Mejora continua",
+    "Comunicación oral y escrita",
+    "Creatividad e innovación",
+    "Atención al detalle",
+  ];
+
+  const $ = (s, r = document) => r.querySelector(s),
+    $$ = (s, r = document) => [...r.querySelectorAll(s)];
+  const esc = (s) =>
+    String(s).replace(
+      /[&<>"]/g,
+      (c) => ({ "&": "&amp;", "<": "&lt;", ">": "&gt;", '"': "&quot;" })[c],
+    );
+  const reduce = matchMedia("(prefers-reduced-motion: reduce)").matches;
+  const go = (id) => {
+    const el = document.getElementById(id);
+    if (el)
+      el.scrollIntoView({
+        behavior: reduce ? "auto" : "smooth",
+        block: "start",
+      });
+  };
+  let toastT;
+  const toast = (m) => {
+    const t = $("#toast");
+    t.textContent = m;
+    t.classList.add("on");
+    clearTimeout(toastT);
+    toastT = setTimeout(() => t.classList.remove("on"), 2600);
+  };
+
+  document.addEventListener("click", (e) => {
+    const b = e.target.closest("[data-go]");
+    if (b) {
+      e.preventDefault();
+      go(b.dataset.go);
+    }
+  });
+
+  /* Retos de la empresa */
+  const tabs = $("#tabs");
+  NEEDS.forEach((n, i) => {
+    const b = document.createElement("button");
+    b.className = "tab";
+    b.type = "button";
+    b.id = "tab" + i;
+    b.setAttribute("role", "tab");
+    b.textContent = n.t;
+    b.onclick = () => showNeed(i);
+    tabs.append(b);
+  });
+  function showNeed(i) {
+    const n = NEEDS[i];
+    $$(".tab").forEach((t, j) => t.setAttribute("aria-selected", j === i));
+    $("#need").setAttribute("aria-labelledby", "tab" + i);
+    $("#need").innerHTML =
+      `<h3>${esc(n.h)}</h3><ul>${n.p.map((x) => `<li>${esc(x)}</li>`).join("")}</ul><button class="link" type="button" id="seeExp">Ver la experiencia relacionada</button>`;
+    $("#seeExp").onclick = () => {
+      $$(".role").forEach((r) =>
+        r.classList.toggle("hl", n.r.includes(r.dataset.id)),
+      );
+      go("trayectoria");
+      setTimeout(
+        () => $$(".role").forEach((r) => r.classList.remove("hl")),
+        4500,
+      );
+    };
+  }
+  showNeed(0);
+
+  /* Trayectoria */
+  $("#tl").innerHTML = ROLES.map((r, i) => {
+    const open = i === 0,
+      first = r.b.slice(0, open ? r.b.length : 2),
+      rest = open ? [] : r.b.slice(2);
+    return `<article class="role rv${r.now ? " now" : ""}" data-id="${r.id}">
+   <div class="card"><div class="meta"><span>${esc(r.fecha)}</span>${r.now ? '<span class="chip live">Más reciente</span>' : ""}</div>
+   <h3>${esc(r.rol)}</h3><p class="co">${esc(r.emp)}${r.lugar ? " · " + esc(r.lugar) : ""}</p>
+   <ul>${first.map((x) => `<li>${esc(x)}</li>`).join("")}</ul>
+   ${rest.length ? `<ul class="more" hidden>${rest.map((x) => `<li>${esc(x)}</li>`).join("")}</ul><button class="link more" type="button" aria-expanded="false">Ver ${rest.length} logros más</button>` : ""}
+   </div></article>`;
+  }).join("");
+  $$(".role button.more").forEach(
+    (b) =>
+      (b.onclick = () => {
+        const ul = b.previousElementSibling,
+          open = ul.hidden;
+        ul.hidden = !open;
+        b.setAttribute("aria-expanded", open);
+        b.textContent = open
+          ? "Ver menos"
+          : `Ver ${ul.children.length} logros más`;
+      }),
+  );
+
+  /* Certificaciones */
+  const cats = ["Todos", ...new Set(CERTS.map((c) => c.c))];
+  $("#filters").innerHTML = cats
+    .map(
+      (c, i) =>
+        `<button class="f" type="button" aria-pressed="${i === 0}" data-c="${esc(c)}">${esc(c)}</button>`,
+    )
+    .join("");
+  $("#certs").innerHTML = CERTS.map(
+    (c) =>
+      `<div class="cert rv" data-c="${esc(c.c)}"><span class="chip">${esc(c.c)}</span><b>${esc(c.n)}</b><small>${esc(c.o || "Certificación")}</small></div>`,
+  ).join("");
+  $("#filters").onclick = (e) => {
+    const b = e.target.closest(".f");
+    if (!b) return;
+    $$(".f").forEach((x) => x.setAttribute("aria-pressed", x === b));
+    $$(".cert").forEach(
+      (c) =>
+        (c.hidden = !(b.dataset.c === "Todos" || c.dataset.c === b.dataset.c)),
+    );
+  };
+
+  /* Habilidades */
+  $("#tech").innerHTML = Object.keys(TECH)
+    .map(
+      (k) =>
+        `<button class="pill" type="button" aria-pressed="false" data-k="${esc(k)}">${esc(k)}</button>`,
+    )
+    .join("");
+  $("#soft").innerHTML = SOFT.map(
+    (s) => `<span class="pill">${esc(s)}</span>`,
+  ).join("");
+  function skill(k) {
+    $$("#tech .pill").forEach((p) =>
+      p.setAttribute("aria-pressed", p.dataset.k === k),
+    );
+    $("#skillinfo").innerHTML =
+      `<b>${esc(k)}</b><ul>${TECH[k].map((x) => `<li>${esc(x)}</li>`).join("")}</ul>`;
+  }
+  $("#tech").onclick = (e) => {
+    const b = e.target.closest(".pill");
+    if (b) skill(b.dataset.k);
+  };
+  skill("Indicadores, reportes y control");
+
+  /* Contacto (solo muestra lo que esté lleno) */
+  const filas = [
+    ["Correo", CONTACTO.correo],
+    ["Teléfono", CONTACTO.telefono],
+    ["LinkedIn", CONTACTO.linkedin],
+    ["Domicilio", CONTACTO.direccion],
+  ].filter((f) => f[1]);
+  $("#contact").innerHTML = filas.length
+    ? filas
+        .map(
+          ([l, v]) =>
+            `<div class="crow"><div><small>${l}</small>${l === "LinkedIn" ? `<a href="${esc(v)}" target="_blank" rel="noopener">${esc(v.replace("https://www.", ""))}</a>` : `<span>${esc(v)}</span>`}</div><button type="button" data-copy="${esc(v)}" aria-label="Copiar ${l}">Copiar</button></div>`,
+        )
+        .join("")
+    : `<div class="note">Los datos de contacto se agregarán pronto.</div>`;
+  async function copiar(txt, msg) {
+    try {
+      await navigator.clipboard.writeText(txt);
+      toast(msg);
+    } catch (e) {
+      toast("No se pudo copiar. Selecciona el texto y cópialo.");
+    }
+  }
+  $("#contact").onclick = (e) => {
+    const b = e.target.closest("[data-copy]");
+    if (b) copiar(b.dataset.copy, "Copiado");
+  };
+  $("#share").onclick = () => copiar(location.href, "Enlace copiado");
+
+  /* Frases rotativas */
+  const frases = [
+    "gestión de procesos",
+    "calidad ISO 9001",
+    "mejora continua",
+    "proyectos y KPIs",
+    "compras y proveedores",
+  ];
+  let fi = 0;
+  const rot = $("#rot");
+  if (!reduce)
+    setInterval(() => {
+      rot.classList.add("out");
+      setTimeout(() => {
+        fi = (fi + 1) % frases.length;
+        rot.textContent = frases[fi];
+        rot.classList.remove("out");
+      }, 350);
+    }, 2600);
+
+  /* Aparición y contadores */
+  const io = new IntersectionObserver(
+    (es) =>
+      es.forEach((en) => {
+        if (en.isIntersecting) {
+          en.target.classList.add("seen");
+          io.unobserve(en.target);
+        }
+      }),
+    { threshold: 0.12 },
+  );
+  $$(".rv").forEach((el) => io.observe(el));
+  const nums = $$(".num");
+  function contar(el) {
+    const to = +el.dataset.to,
+      suf = el.dataset.suf || "",
+      t0 = performance.now(),
+      d = 1100;
+    const step = (t) => {
+      const p = Math.min(1, (t - t0) / d),
+        v = Math.round(to * (1 - Math.pow(1 - p, 3)));
+      el.textContent = v + suf;
+      if (p < 1) requestAnimationFrame(step);
+    };
+    requestAnimationFrame(step);
+  }
+  if (!reduce) {
+    const io2 = new IntersectionObserver(
+      (es) =>
+        es.forEach((en) => {
+          if (en.isIntersecting) {
+            contar(en.target);
+            io2.unobserve(en.target);
+          }
+        }),
+      { threshold: 0.6 },
+    );
+    nums.forEach((n) => io2.observe(n));
+  }
+
+  /* Progreso de lectura y botón flotante */
+  const fill = $("#barfill"),
+    pct = $("#pct"),
+    fab = $("#fab");
+  let tick = false,
+    fin = false;
+  function onScroll() {
+    const max = document.documentElement.scrollHeight - innerHeight,
+      p = max > 0 ? Math.min(1, Math.max(0, scrollY / max)) : 0;
+    fill.style.transform = `scaleX(${p})`;
+    const v = Math.round(p * 100);
+    pct.textContent = v >= 98 ? "Perfil completo" : `Perfil visto ${v}%`;
+    const hero = $("#inicio").offsetHeight,
+      end = $("#contacto").getBoundingClientRect().top < innerHeight * 0.7;
+    fab.classList.toggle("off", scrollY < hero * 0.8 || end);
+    if (v >= 98 && !fin) {
+      fin = true;
+      toast("Viste el perfil completo");
+    }
+    tick = false;
+  }
+  addEventListener(
+    "scroll",
+    () => {
+      if (!tick) {
+        tick = true;
+        requestAnimationFrame(onScroll);
+      }
+    },
+    { passive: true },
+  );
+  onScroll();
+</script>
